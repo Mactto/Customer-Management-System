@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Customer from "./components/Customer";
 import "./App.css";
 import Paper from "@material-ui/core/Paper";
@@ -20,35 +21,14 @@ const useStyles = makeStyles({
   },
 });
 
-const customers = [
-  {
-    id: 1,
-    image: "https://placeimg.com/64/64/1",
-    name: "최세환",
-    birthday: "990201",
-    gender: "man",
-    job: "student",
-  },
-  {
-    id: 2,
-    image: "https://placeimg.com/64/64/2",
-    name: "홍길동",
-    birthday: "123456",
-    gender: "man",
-    job: "student",
-  },
-  {
-    id: 3,
-    image: "https://placeimg.com/64/64/3",
-    name: "고담률",
-    birthday: "654321",
-    gender: "woman",
-    job: "student",
-  },
-];
-
 function App() {
   const classes = useStyles();
+  const [customers, setCustomers] = useState([]);
+
+  useEffect(async() => {
+    const result = await axios.get("./api/customers");
+    setCustomers(result.data);
+  }, []);
 
   return (
     <TableContainer component={Paper}>
@@ -65,7 +45,7 @@ function App() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {customers.map((c) => {
+            {customers ? customers.map((c) => {
               return (
                 <Customer
                   key={c.id}
@@ -77,7 +57,7 @@ function App() {
                   job={c.job}
                 />
               );
-            })}
+            }) : ""}
           </TableBody>
         </Table>
       </Paper>

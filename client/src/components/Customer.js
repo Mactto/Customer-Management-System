@@ -4,8 +4,7 @@ import TableCell from "@material-ui/core/TableCell";
 
 function Customer({ id, image, name, birthday, gender, job }) {
   return (
-    <div>
-      <TableRow>
+      <TableRow key={id}>
         <TableCell>{id}</TableCell>
         <TableCell>
           <img src={image} />
@@ -15,7 +14,6 @@ function Customer({ id, image, name, birthday, gender, job }) {
         <TableCell>{gender}</TableCell>
         <TableCell>{job}</TableCell>
       </TableRow>
-    </div>
   );
 }
 
