@@ -10,6 +10,7 @@ import TableBody from "@material-ui/core/TableBody";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import { makeStyles } from "@material-ui/core/styles";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles({
   root: {
@@ -19,13 +20,20 @@ const useStyles = makeStyles({
   table: {
     minWidth: 1080,
   },
+  progress: {
+    margin: 10,
+  }
 });
 
 function App() {
   const classes = useStyles();
   const [customers, setCustomers] = useState([]);
+  const [progress, setProgress] = useState(0);
 
   useEffect(async() => {
+    const timer = setInterval(() => {
+      setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 1));
+    }, 20);
     const result = await axios.get("./api/customers");
     setCustomers(result.data);
   }, []);
@@ -45,7 +53,7 @@ function App() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {customers ? customers.map((c) => {
+            {customers!=0 ? customers.map((c) => {
               return (
                 <Customer
                   key={c.id}
@@ -57,7 +65,13 @@ function App() {
                   job={c.job}
                 />
               );
-            }) : ""}
+            }) : 
+            <TableRow>
+              <TableCell colSpan="6" align="center">
+                <CircularProgress className={progress} variant="determinate" value={progress}/>
+              </TableCell>
+            </TableRow>
+            }
           </TableBody>
         </Table>
       </Paper>
