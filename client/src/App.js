@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Customer from "./components/Customer";
+import CustomerAdd from './components/CustomerAdd';
 import "./App.css";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
@@ -40,41 +41,41 @@ function App() {
 
   return (
     <TableContainer component={Paper}>
-      <Paper className={classes.root}>
-        <Table className={classes.table} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>id</TableCell>
-              <TableCell>image</TableCell>
-              <TableCell>name</TableCell>
-              <TableCell>birthday</TableCell>
-              <TableCell>gender</TableCell>
-              <TableCell>job</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {customers!=0 ? customers.map((c) => {
-              return (
-                <Customer
-                  key={c.id}
-                  id={c.id}
-                  image={c.image}
-                  name={c.name}
-                  birthday={c.birthday}
-                  gender={c.gender}
-                  job={c.job}
-                />
-              );
-            }) : 
-            <TableRow>
-              <TableCell colSpan="6" align="center">
-                <CircularProgress className={progress} variant="determinate" value={progress}/>
-              </TableCell>
-            </TableRow>
-            }
-          </TableBody>
-        </Table>
-      </Paper>
+        <Paper className={classes.root}>
+          <Table className={classes.table} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>id</TableCell>
+                <TableCell>image</TableCell>
+                <TableCell>name</TableCell>
+                <TableCell>birthday</TableCell>
+                <TableCell>gender</TableCell>
+                <TableCell>job</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {customers!=0 ? customers.map((c) => {
+                return (
+                  <Customer
+                    key={c.id}
+                    id={c.id}
+                    image={c.image}
+                    name={c.name}
+                    birthday={c.birthday}
+                    gender={c.gender}
+                    job={c.job}
+                  />
+                );
+              }) : 
+              <TableRow>
+                <TableCell colSpan="6" align="center">
+                  <CircularProgress className={progress} variant="determinate" value={progress}/>
+                </TableCell>
+              </TableRow>
+              }
+            </TableBody>
+          </Table>
+        </Paper>
     </TableContainer>
   );
 }
