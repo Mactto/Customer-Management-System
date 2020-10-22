@@ -14,7 +14,7 @@ function CustomerAdd() {
     const { file, userName, birthday, gender, job, fileName } = info;
 
     function addCustomer() {
-        const url = '/api/customers';
+        const url = 'http://localhost:5000/api/customers';
         const formData = new FormData();
         formData.append('image', info.file)
         formData.append('name', info.userName);
@@ -26,7 +26,6 @@ function CustomerAdd() {
                 'content-type' : 'multipart/form-data'
             }
         }
-        console.log(formData.values);
         return post(url, formData, config);
     }
 
@@ -58,7 +57,6 @@ function CustomerAdd() {
 
     function handleValueChange(e) {
         const {name, value} = e.target;
-        console.log({name, value});
         setInfo({
             ...info,
             [name]: value

@@ -66,7 +66,7 @@ function App() {
                     job={c.job}
                   />
                 );
-              }) : 
+              }) :
               <TableRow>
                 <TableCell colSpan="6" align="center">
                   <CircularProgress className={progress} variant="determinate" value={progress}/>
