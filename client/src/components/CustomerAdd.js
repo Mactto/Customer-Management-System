@@ -44,15 +44,19 @@ function CustomerAdd() {
             job: '',
             fileName: ''
         })
-        //window.location.reload();
+        window.location.reload();
     }
 
     function handleFileChange(e) {
         const {name, value} = e.target;
         setInfo({
             ...info,
-            [name]: value
+            [name]: e.target.files[0],
+            [fileName]: value
         })
+        
+        console.log(name, value);
+        console.log(e.target.files[0])
     }
 
     function handleValueChange(e) {
