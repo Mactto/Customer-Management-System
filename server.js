@@ -35,16 +35,7 @@ app.use('/image', express.static('./upload'));
 
 app.post('/api/customers', upload.single('image'), (req, res) => {
   console.log('success');
-  let sql = 'INSERT INTO CUSTOMER VALUES (null, ?, ?, ?, ?, ?)';
-  let image = '/image' + req.file.filename;
-  let name = req.body.name;
-  let birthday = req.body.birthday;
-  let gender = req.body.gender;
-  let job = req. body.job;
-  let params = [image, name, birthday, gender, job];
-  connection.query(sql, params, (err, rows, fields) => {
-    res.send(rows);
-  })
+  console.log(res)
 })
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

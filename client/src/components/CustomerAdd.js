@@ -14,7 +14,7 @@ function CustomerAdd() {
     const { file, userName, birthday, gender, job, fileName } = info;
 
     function addCustomer() {
-        const url = 'http://localhost:5000/api/customers';
+        const url = '/api/customers';
         const formData = new FormData();
         formData.append('image', info.file)
         formData.append('name', info.userName);
