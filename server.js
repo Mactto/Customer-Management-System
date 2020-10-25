@@ -26,6 +26,7 @@ const upload = multer({dest: './upload/'});
 app.get('/api/customers', (req, res) => {
   connection.query('SELECT * FROM CUSTOMER',
     (err, rows, fields) => {
+      console.log(rows);
       res.send(rows);
     }
   );
@@ -35,7 +36,7 @@ app.use('/image', express.static('./upload'));
 
 app.post('/api/customers', upload.single('image'), (req, res) => {
   let sql = 'INSERT INTO CUSTOMER VALUES (null, ?, ?, ?, ?, ?)';
-  let image = '/image/' + req.file.filename;
+  let image = 'http://localhost:5000/image/' + req.file.filename;
   let name = req.body.name;
   let birthday = req.body.birthday;
   let gender = req.body.gender;

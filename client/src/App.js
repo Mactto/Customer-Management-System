@@ -39,16 +39,6 @@ function App() {
     setCustomers(result.data);
   }, []);
 
-  function stateRefresh() {
-    setCustomer({
-      customer: ''
-    })
-    setProgress({
-      progress: 0
-    });
-    
-  }
-
   return (
     <TableContainer component={Paper}>
         <Paper className={classes.root}>
