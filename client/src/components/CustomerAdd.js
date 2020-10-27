@@ -44,7 +44,6 @@ function CustomerAdd() {
             job: '',
             fileName: ''
         })
-        window.location.reload();
     }
 
     function handleFileChange(e) {

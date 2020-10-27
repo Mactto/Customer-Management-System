@@ -32,7 +32,7 @@ function App() {
   const [progress, setProgress] = useState(0);
 
   useEffect(async() => {
-    const timer = setInterval(() => {
+    setInterval(() => {
       setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 1));
     }, 20);
     const result = await axios.get("./api/customers");
