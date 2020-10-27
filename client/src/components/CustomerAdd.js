@@ -44,6 +44,7 @@ function CustomerAdd() {
             job: '',
             fileName: ''
         })
+        
     }
 
     function handleFileChange(e) {
