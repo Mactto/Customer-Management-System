@@ -1,7 +1,6 @@
 import React from "react";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
-import CustomerDelete from "./CustomerDelete";
 
 function Customer({ id, image, name, birthday, gender, job }) {
   return (
@@ -14,7 +13,6 @@ function Customer({ id, image, name, birthday, gender, job }) {
         <TableCell>{birthday}</TableCell>
         <TableCell>{gender}</TableCell>
         <TableCell>{job}</TableCell>
-        <TableCell><CustomerDelete/></TableCell>
       </TableRow>
   );
 }

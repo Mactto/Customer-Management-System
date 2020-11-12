@@ -31,7 +31,8 @@ function App() {
   const [customers, setCustomers] = useState([]);
   const [progress, setProgress] = useState(0);
 
-  useEffect(async() => {
+  useEffect(
+    async() => {
     setInterval(() => {
       setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 1));
     }, 20);
