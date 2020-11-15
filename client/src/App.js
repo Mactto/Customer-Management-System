@@ -40,6 +40,14 @@ function App() {
     setCustomers(result.data);
   }, []);
 
+  const stateRefresh = async () => {
+    setInterval(() => {
+      setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 1));
+    }, 20);
+    const result = await axios.get("./api/customers");
+    setCustomers(result.data);
+  }
+
   return (
     <TableContainer component={Paper}>
         <Paper className={classes.root}>
@@ -52,6 +60,7 @@ function App() {
                 <TableCell>birthday</TableCell>
                 <TableCell>gender</TableCell>
                 <TableCell>job</TableCell>
+                <TableCell>setting</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -65,6 +74,7 @@ function App() {
                     birthday={c.birthday}
                     gender={c.gender}
                     job={c.job}
+                    stateRefresh={stateRefresh}
                   />
                 );
               }) :
@@ -77,8 +87,8 @@ function App() {
             </TableBody>
           </Table>
         </Paper>
-        <CustomerAdd/>
-    </TableContainer>
+        <CustomerAdd  stateRefresh = {stateRefresh}/>
+    </TableContainer >
   );
 }
 export default App;

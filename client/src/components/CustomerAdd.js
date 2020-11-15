@@ -1,14 +1,28 @@
 import React, { useState } from 'react';
 import { post } from 'axios';
+//import Dialog from'@material-ui/core/Dialog';
+//import DialogActions from '@material-ui/core/DialogActions';
+//import DialogTitle from '@material-ui/core/DialogTitle';
+//import DialogContent from '@material-ui/core/DialogContent';
+//import TextField from '@material-ui/core/TextField';
+//import Button from '@material-ui/core/Buttonimport';
+//import { withStyles } from '@material-ui/core/styles';
 
-function CustomerAdd() {
+const styles = theme => ({
+    hidden: {
+        display: 'none'
+    }
+})
+
+function CustomerAdd(props) {
     const [info, setInfo] = useState([{
         file: null,
         useName: '',
         birthday: '',
         gender: '',
         job: '',
-        fileName: ''
+        fileName: '',
+        //open: false
     }]);
 
     const { file, userName, birthday, gender, job, fileName } = info;
@@ -34,6 +48,7 @@ function CustomerAdd() {
         addCustomer()
         .then((response) => {
             console.log(response.data);
+            props.stateRefresh();
         })
         .catch(err => console.log(err));
         setInfo({
@@ -44,7 +59,6 @@ function CustomerAdd() {
             job: '',
             fileName: ''
         })
-        
     }
 
     function handleFileChange(e) {
@@ -66,8 +80,35 @@ function CustomerAdd() {
             [name]: value
         });
     }
+    /* 
+    const handleClickOpen = () => {
+        setInfo({ open : true})
+    }
 
+    const handleClickClose = () => {
+        setInfo({
+            file: null,
+            useName: '',
+            birthday: '',
+            gender: '',
+            job: '',
+            fileName: '',
+            open: false
+        })
+    }
+    const {classes} = props;
+    */
     return (
+        /*
+        <div>
+            <Button variant="contained" color="primary" onClick={handleClickOpen}>
+                고객 추가하기
+            </Button>
+            <Dialog>
+
+            </Dialog>
+        </div>
+        */
         <form onSubmit={handleFormSubmit}>
             <h1>고객 추가</h1>
             프로필 이미지 : <input type="file" name="file" file={file} value={fileName} onChange={handleFileChange}/><br/>
