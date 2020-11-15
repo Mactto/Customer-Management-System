@@ -2,6 +2,13 @@
 
 본 프로젝트는 React와 Node.js 연동 실습을 위해 진행한 공부입니다.
 
+### Development Environment
+
+- Front-End : React.js
+- Back-End : Node.js
+- Database : MySQL
+- Tools : Visual Code
+
 ### Lecture
 
 - Teacher : Dong Bin Na
